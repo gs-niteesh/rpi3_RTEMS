@@ -1,0 +1,6 @@
+echo Booting the RPI from LAN (TFTP)...
+
+set bootdelay=4
+loadfdt=fatload mmc 0 0x1000 bcm2710-rpi-3-b.dtb
+loadimg=tftp 0x200000 rtems.img
+bootcmd=setenv serverip 192.168.1.102; dhcp; run loadimg; run loadfdt; bootm 0x200000 - 0x1000
