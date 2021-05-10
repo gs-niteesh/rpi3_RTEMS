@@ -1,0 +1,15 @@
+Using Rpi bootloader
+--------------------
+  arm-rtems5-objcopy -Obinary hello.exe rtems.img
+  config.txt:
+    enable_uart=1
+    kernel_address=0x200000
+    kernel=kernel.img
+
+Using u-boot
+------------
+  arm-rtems5-objcopy -Obinary hello.exe kernel.img
+  mkimage -A arm -O linux -T kernel -a 0x200000 -e 0x200000 -n RTEMS -d kernel.img rtems.img -C none
+  config.txt:
+    enable_uart=1
+    kernel=u-boot.bin
